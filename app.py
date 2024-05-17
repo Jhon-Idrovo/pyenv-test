@@ -13,7 +13,7 @@ class App(customtkinter.CTk):
 
 		# Configure grid layout
 		self.grid_rowconfigure(0, weight=1)
-		self.grid_rowconfigure(1, weight=1)
+		self.grid_rowconfigure(1, weight=0)
 		self.grid_columnconfigure(0, weight=1)
 
 		# Create main frame
@@ -23,14 +23,18 @@ class App(customtkinter.CTk):
 
 		# Create footer frame
 		self.footer_frame = customtkinter.CTkFrame(self)
-		self.footer_frame.grid(column=0, row=1)
+		self.footer_frame.grid(column=0, row=1, sticky=customtkinter.EW)
 
 		# Create options for the footer
-		self.add_setup_button = customtkinter.CTkButton(self.footer_frame, corner_radius=10, text='Add')
-		self.cancel_add_setup_button = customtkinter.CTkButton(self.footer_frame, corner_radius=10, text='Cancel')
+		self.add_setup_button = customtkinter.CTkButton(self.footer_frame, text='Add', width=self.winfo_vrootwidth(), corner_radius=0)
+		self.cancel_add_setup_button = customtkinter.CTkButton(self.footer_frame, corner_radius=00, text='Cancel')
 
 		# Start the footer with the add button
 		self.add_setup_button.pack()
 		self.selected_frame_by_name = 'setups'
-	def build_setups():
+	def build_setups(self):
 		pass
+
+if __name__ == "__main__":
+    app = App()
+    app.mainloop()
