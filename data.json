@@ -1,0 +1,16 @@
+{
+  "setups": [
+    {
+      "name": "Test Setup",
+      "apps": ["/Users/jhonidrovo/Applications/Loom.app"]
+    },
+    {
+      "name": "Test Setup 2",
+      "apps": ["/Users/jhonidrovo/Applications/Loom.app"]
+    },
+    {
+      "name": "Test Setup 3",
+      "apps": ["/Users/jhonidrovo/Applications/Loom.app"]
+    }
+  ]
+}

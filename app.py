@@ -1,5 +1,6 @@
 import customtkinter
-
+import os
+import json
 class Setup:
 	def __init__(self,setup_name,setup_apps):
 		self.name = setup_name
@@ -33,13 +34,18 @@ class App(customtkinter.CTk):
 		self.add_setup_button.pack()
 		self.selected_frame_by_name = 'setups'
 	def build_setups(self):
-		dummy_setups = [{'name':'Test Setup', 'apps':['/Users/jhonidrovo/Applications/Loom.app']},{'name':'Test Setup 2', 'apps':['/Users/jhonidrovo/Applications/Loom.app']}, {'name':'Test Setup 3', 'apps':['/Users/jhonidrovo/Applications/Loom.app']}]
+		if os.path.isfile('data.json'):
+			with open('data.json','r') as f:
+				data = f.read()
+				print(data)
+				self.setups = json.loads(data)['setups']
+				
 		self.setups_grid = customtkinter.CTkFrame(self.main_frame, fg_color='transparent', width=self.winfo_vrootwidth(), corner_radius=0)
 		self.setups_grid.grid_columnconfigure(0, weight=1, pad=10)
 		self.setups_grid.grid_columnconfigure(1, weight=1, pad=10)
 		self.setups_grid.grid_rowconfigure(0, weight=1, pad=10)
 		rows = [[]]
-		for setup in dummy_setups:
+		for setup in self.setups:
 			setup_button = customtkinter.CTkButton(self.setups_grid, text=setup['name'], height=140)
 			row_index = len(rows)-1
 			row = rows[row_index]
