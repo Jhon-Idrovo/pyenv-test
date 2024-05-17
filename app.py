@@ -9,7 +9,7 @@ class App(customtkinter.CTk):
 		super().__init__()
 
 		self.title("Workbench Setup")
-		self.geometry('300x700')
+		self.geometry('350x700')
 
 		# Configure grid layout
 		self.grid_rowconfigure(0, weight=1)
@@ -34,20 +34,19 @@ class App(customtkinter.CTk):
 		self.selected_frame_by_name = 'setups'
 	def build_setups(self):
 		dummy_setups = [{'name':'Test Setup', 'apps':['/Users/jhonidrovo/Applications/Loom.app']},{'name':'Test Setup 2', 'apps':['/Users/jhonidrovo/Applications/Loom.app']}, {'name':'Test Setup 3', 'apps':['/Users/jhonidrovo/Applications/Loom.app']}]
-		self.setups_grid = customtkinter.CTkFrame(self.main_frame)
-		self.setups_grid.grid_columnconfigure(0, pad=10, weight=1)
-		self.setups_grid.grid_columnconfigure(1, pad=10, weight=1)
+		self.setups_grid = customtkinter.CTkFrame(self.main_frame, fg_color='transparent', width=self.winfo_vrootwidth(), corner_radius=0)
+		self.setups_grid.grid_columnconfigure(0, weight=1, pad=10)
+		self.setups_grid.grid_columnconfigure(1, weight=1, pad=10)
 		self.setups_grid.grid_rowconfigure(0, weight=1, pad=10)
 		rows = [[]]
 		for setup in dummy_setups:
-			# setup_frame = customtkinter.CTkFrame(setups_grid)
-			setup_button = customtkinter.CTkButton(self.setups_grid, text=setup['name'])
+			setup_button = customtkinter.CTkButton(self.setups_grid, text=setup['name'], height=140)
 			row_index = len(rows)-1
 			row = rows[row_index]
 			if len(row)==2:
 				row[0].grid(column=0, row=row_index)
 				row[1].grid(column=1, row=row_index)
-				self.setups_grid.grid_rowconfigure(row_index+1, weight=1)
+				self.setups_grid.grid_rowconfigure(row_index+1, weight=1, pad=10)
 				rows.append([setup_button])
 			else:
 				row.append(setup_button)
