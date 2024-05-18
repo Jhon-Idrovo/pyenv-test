@@ -39,20 +39,20 @@ class App(customtkinter.CTk):
 				data = f.read()
 				print(data)
 				self.setups = json.loads(data)['setups']
-				
-		self.setups_grid = customtkinter.CTkFrame(self.main_frame, fg_color='transparent', width=self.winfo_vrootwidth(), corner_radius=0)
-		self.setups_grid.grid_columnconfigure(0, weight=1, pad=10)
-		self.setups_grid.grid_columnconfigure(1, weight=1, pad=10)
-		self.setups_grid.grid_rowconfigure(0, weight=1, pad=10)
+
+		setups_grid = customtkinter.CTkFrame(self.main_frame, fg_color='transparent', width=self.winfo_vrootwidth(), corner_radius=0)
+		setups_grid.grid_columnconfigure(0, weight=1, pad=10)
+		setups_grid.grid_columnconfigure(1, weight=1, pad=10)
+		setups_grid.grid_rowconfigure(0, weight=1, pad=10)
 		rows = [[]]
 		for setup in self.setups:
-			setup_button = customtkinter.CTkButton(self.setups_grid, text=setup['name'], height=140)
+			setup_button = customtkinter.CTkButton(setups_grid, text=setup['name'], height=140)
 			row_index = len(rows)-1
 			row = rows[row_index]
 			if len(row)==2:
 				row[0].grid(column=0, row=row_index)
 				row[1].grid(column=1, row=row_index)
-				self.setups_grid.grid_rowconfigure(row_index+1, weight=1, pad=10)
+				setups_grid.grid_rowconfigure(row_index+1, weight=1, pad=10)
 				rows.append([setup_button])
 			else:
 				row.append(setup_button)
@@ -61,9 +61,12 @@ class App(customtkinter.CTk):
 		for x in range(len(last_row)):
 			last_row[x].grid(column=x, row=len(rows)-1)
 
-		self.setups_grid.pack()
+		setups_grid.pack()
 		print(rows)
-
+	def add_setup(self):
+		pass
+	def cancel_adding_setup(self):
+		pass
 if __name__ == "__main__":
     app = App()
     app.mainloop()
